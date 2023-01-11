@@ -1,0 +1,9 @@
+venv/*
+**/__pycache__/*
+**/vault.py
+
+logs/*
+
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
