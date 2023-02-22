@@ -3,7 +3,7 @@ import os
 from datetime import timedelta
 
 # Project Name
-PROJECT_NAME = "*****"
+PROJECT_NAME = "message-board"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "import_export",
     "rest_framework_simplejwt.token_blacklist",
+    "messenger",
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 # Change Timezone
-# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -147,10 +148,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 AUTH_USER_MODEL = 'atomicloops.Users'
 
 # JWT Configuration
-SIMPLE_JWT = {
+SIMPLE_JWT = { 
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    "SIGNING_KEY": "*****",
+    "SIGNING_KEY": "tc!6bn-gztojg@-bz!phc3=&i@*j7)$a97+emlz1z^x^6o5@k0",
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True
 }

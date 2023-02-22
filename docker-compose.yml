@@ -5,7 +5,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: "*****"
+    container_name: message-board-backend
     user: "${UID}:${GID}"
     environment:
       ENV: prod
@@ -16,7 +16,7 @@ services:
       - 8000:8000
 
   pgadmin:
-    container_name: "*****"
+    container_name: message-board-admin
     image: dpage/pgadmin4
     restart: always
     environment:
@@ -25,7 +25,7 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - <volume_name>:/var/lib/pgadmin
+      - message-board-admin:/var/lib/pgadmin
 
   webserver:
     container_name: nginx-server
@@ -40,7 +40,7 @@ services:
   rabbit-mq:
     image: rabbitmq:3.7-management
     restart: always
-    container_name: "*****"
+    container_name: message-board-rabbit-mq
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
@@ -49,7 +49,7 @@ services:
       - "15672:15672"
 
   celery:
-    container_name: "*****"
+    container_name: message-board-celery
     build: .
     command: celery -A src worker -l INFO  -E -f /opt/logs/celery/celery.logs
     volumes:
@@ -59,7 +59,7 @@ services:
       - backend
 
   flower:
-    container_name: "*****"
+    container_name: message-board-flower
     build: .
     command: celery -A src flower --port=5555
     image: mher/flower:0.9.7
@@ -73,7 +73,7 @@ services:
       - rabbit-mq
   
   redis:
-    container_name: "*****"
+    container_name: message-board-redis
     image: redis
     expose:
       - 6379   
